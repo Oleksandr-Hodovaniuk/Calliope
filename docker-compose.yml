@@ -12,7 +12,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-    - ./keycloak-export:/opt/keycloak/data/import  
+    - ./backend/Keycloak:/opt/keycloak/data/import  
     depends_on:
       keycloak-postgres:
         condition: service_healthy
