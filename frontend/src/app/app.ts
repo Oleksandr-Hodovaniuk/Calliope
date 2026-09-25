@@ -10,8 +10,4 @@ import { SHARED_IMPORTS } from './shared/shared.imports';
   templateUrl: './app.html',
 })
 export class App {
-  
-  login(): void {
-    alert("Click");
-  }
 }
