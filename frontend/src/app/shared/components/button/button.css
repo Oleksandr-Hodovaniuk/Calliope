@@ -1,0 +1,48 @@
+.default {
+  cursor: pointer;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 6px;
+  border-width: 1px;
+  background-color: #212830;
+  border-color: #717d8d;
+}
+.default:hover {
+  background-color: #374350;
+}
+.default:active{
+  background-color: #596d81;
+}
+
+.confirm {
+  cursor: pointer;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 6px;
+  border-width: 1px;
+  background-color: #238636;
+  border-color: #ffffff;
+}
+.confirm:hover {
+  background-color: #34cc53;
+}
+.confirm:active {
+  background-color: #31dd53;
+}
+
+.cancel {
+  cursor: pointer;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 6px;
+  border-width: 1px;
+  background-color: #05142c;
+  color: #fa5e55;
+}
+.cancel:hover {
+  background-color:#b31b13;
+  color: #ffffff;
+}
+.cancel:active {
+  background-color: #ff0d00;
+}
