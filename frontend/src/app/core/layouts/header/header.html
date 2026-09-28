@@ -5,7 +5,11 @@
   </a>
 
   <div class="actions">
-    <app-button type="default" label="Sign in" (clickEvent)="login()"/>
-    <app-button type="default" label="Log in" />
+    @if (isAuthenticated()) {
+      <app-button type="default" label="Log out" (clickEvent)="logout()"/>
+    } @else {
+      <app-button type="default" label="Log in" (clickEvent)="login()"/>
+      <app-button type="default" label="Sign in"/>
+    }
   </div>
 </header>
