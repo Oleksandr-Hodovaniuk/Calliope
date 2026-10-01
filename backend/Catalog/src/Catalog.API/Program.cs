@@ -1,8 +1,14 @@
+using Catalog.API;
+using Catalog.API.Extensions;
+using Catalog.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services
+    .AddApiServices()
+    .AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -11,6 +17,8 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+await app.InitialiseDatabaseAsync();
 
 app.MapControllers();
 
