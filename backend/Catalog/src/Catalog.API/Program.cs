@@ -1,6 +1,7 @@
 using Catalog.API;
 using Catalog.API.Extensions;
 using Catalog.Infrastructure;
+using Catalog.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddApiServices()
+    .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
