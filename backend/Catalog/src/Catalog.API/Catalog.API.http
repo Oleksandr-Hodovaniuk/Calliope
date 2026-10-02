@@ -1,0 +1,25 @@
+﻿@Catalog.API_HostAddress = https://localhost:7167
+
+POST {{Catalog.API_HostAddress}}/api/tracks
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "author": "Test",
+  "album": "Test",
+  "rating": null
+}
+
+###
+
+DELETE {{Catalog.API_HostAddress}}/api/tracks/7ad27b46-6ab2-4ee9-92a9-45f1ef419ece
+
+###
+
+GET {{Catalog.API_HostAddress}}/api/tracks
+
+###
+
+GET {{Catalog.API_HostAddress}}/api/Tracks/7ad27b46-6ab2-4ee9-92a9-45f1ef419ece
+
+###

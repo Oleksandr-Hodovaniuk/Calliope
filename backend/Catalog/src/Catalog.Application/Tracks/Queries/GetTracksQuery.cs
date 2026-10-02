@@ -17,7 +17,7 @@ internal class GetTracksQueryHandler(IApplicationDbContext _context) : IRequestH
         var totalCount = await query.CountAsync(ct);
 
         var tracks = await query
-            .OrderBy(t => t.CreatedAt)
+            .OrderByDescending(t => t.CreatedAt)
             .Skip((request.Page - 1) * pageSize)
             .Take(pageSize)
             .Select(t => new TrackDto
