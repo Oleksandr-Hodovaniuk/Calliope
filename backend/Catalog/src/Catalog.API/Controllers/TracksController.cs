@@ -18,4 +18,14 @@ public class TracksController(ISender mediator) : BaseController(mediator)
 
         return Ok(result);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetTracks([FromQuery] int page = 1, CancellationToken ct = default)
+    {
+        page = Math.Max(page, 1);
+
+        var result = await Mediator.Send(new GetTracksQuery(page), ct);
+
+        return Ok(result);
+    }
 }

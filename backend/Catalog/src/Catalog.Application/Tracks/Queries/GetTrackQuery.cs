@@ -11,15 +11,16 @@ internal class GetTrackQueryHandler(IApplicationDbContext _context) : IRequestHa
     public async Task<TrackDto?> Handle(GetTrackQuery request, CancellationToken ct)
     {
         return await _context.Tracks
-            .Where(x => x.Id == request.Id)
-            .Select(x => new TrackDto(
-                x.Id,
-                x.Name,
-                x.Author,
-                x.Album,
-                x.Rating,
-                x.HasFile,
-                x.CreatedAt
+            .AsNoTracking()
+            .Where(t => t.Id == request.Id)
+            .Select(t => new TrackDto(
+                t.Id,
+                t.Name,
+                t.Author,
+                t.Album,
+                t.Rating,
+                t.HasFile,
+                t.CreatedAt
                 ))
             .FirstOrDefaultAsync(ct); 
     }
