@@ -16,6 +16,8 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+app.UseCors("Angular");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

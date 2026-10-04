@@ -1,10 +1,14 @@
-﻿namespace Catalog.API;
+﻿using Catalog.API.Extensions;
+
+namespace Catalog.API;
 
 public static class ConfigureServices
 {
     public static IServiceCollection AddApiServices(this IServiceCollection services)
     {
         services.AddControllers();
+
+        services.AddCorsPolicies();
 
         return services;
     }

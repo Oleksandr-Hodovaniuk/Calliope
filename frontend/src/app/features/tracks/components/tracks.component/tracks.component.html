@@ -1,0 +1,22 @@
+<h1>Tracks</h1>
+
+@if (tracks.length == 0) {
+  <p>No tracks found.</p>
+} @else {
+  @for (track of tracks; track track.id) {
+    <div>
+      <h3>{{ track.name }}</h3>
+
+      @if (track.author) {
+        <p>Author: {{ track.author }}</p>
+      }
+
+      @if (track.album) {
+        <p>Album: {{ track.album }}</p>
+      }
+
+      <p>Rating: {{ track.rating ?? 'No rating' }}</p>
+      <p>Has file: {{ track.hasFile }}</p>
+    </div>
+  }
+}

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
-import { KeycloakService } from '../../services/keycloak';
+import { KeycloakService } from '../../services/keycloak.service';
 
 
 @Component({
