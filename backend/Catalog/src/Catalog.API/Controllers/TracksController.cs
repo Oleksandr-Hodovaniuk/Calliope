@@ -34,7 +34,7 @@ public class TracksController(ISender mediator) : BaseController(mediator)
     [HttpPost]
     public async Task<IActionResult> CreateTrack([FromBody] CreateTrackDto dto, CancellationToken ct = default)
     {
-        return Ok(await Mediator.Send(new CreateTrackoCommand(dto), ct));
+        return Ok(await Mediator.Send(new CreateTrackCommand(dto), ct));
     }
 
     [HttpDelete("{id:guid}")]

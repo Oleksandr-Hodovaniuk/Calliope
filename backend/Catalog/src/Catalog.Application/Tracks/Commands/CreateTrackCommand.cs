@@ -5,10 +5,10 @@ using MediatR;
 
 namespace Catalog.Application.Tracks.Commands;
 
-public record CreateTrackoCommand(CreateTrackDto dto) : IRequest<TrackDto>;
-internal class CreateTrackcommandHandler(IApplicationDbContext _context) : IRequestHandler<CreateTrackoCommand, TrackDto>
+public record CreateTrackCommand(CreateTrackDto dto) : IRequest<TrackDto>;
+internal class CreateTrackcommandHandler(IApplicationDbContext _context) : IRequestHandler<CreateTrackCommand, TrackDto>
 {
-    public async Task<TrackDto> Handle(CreateTrackoCommand request, CancellationToken ct)
+    public async Task<TrackDto> Handle(CreateTrackCommand request, CancellationToken ct)
     {
         var track = new Track 
         {

@@ -4,7 +4,7 @@ POST {{Catalog.API_HostAddress}}/api/tracks
 Content-Type: application/json
 
 {
-  "name": "Test",
+  "name": "",
   "author": "Test",
   "album": "Test",
   "rating": null
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###
 
-DELETE {{Catalog.API_HostAddress}}/api/tracks/7ad27b46-6ab2-4ee9-92a9-45f1ef419ece
+DELETE {{Catalog.API_HostAddress}}/api/tracks/b8ff59ae-267d-45ed-9a61-d51c46f1abcd
 
 ###
 
