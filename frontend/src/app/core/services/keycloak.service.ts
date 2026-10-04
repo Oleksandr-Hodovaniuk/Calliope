@@ -1,21 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service, signal  } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { TokenResponse } from '../models/tokenResponse.model';
 
 @Service()
-export class KeycloakService {
+export class KeycloakService 
+{
 
   private readonly http = inject(HttpClient);
   isAuthenticated = signal(false);
 
-  constructor() {
-    this.isAuthenticated.set(
-      this.isAccessTokenValid()
-    );
+  constructor() 
+  {
+    this.isAuthenticated.set(this.isAccessTokenValid());
   }
   
-  private generateCodeVerifier(): string {
-
+  private generateCodeVerifier(): string 
+  {
     const array = new Uint8Array(32);
     crypto.getRandomValues(array);
 
@@ -25,8 +26,8 @@ export class KeycloakService {
       .replace(/=/g, '');
   }
 
-  async generateCodeChallenge(codeVerifier: string): Promise<string> {
-
+  async generateCodeChallenge(codeVerifier: string): Promise<string> 
+  {
     const data = new TextEncoder().encode(codeVerifier);
     const digest = await crypto.subtle.digest('SHA-256', data);
 
@@ -36,8 +37,8 @@ export class KeycloakService {
       .replace(/=/g, '');
   }
 
-  async login(): Promise<void> {
-
+  async login(): Promise<void> 
+  {
     const codeVerifier = this.generateCodeVerifier();
     const codeChallenge = await this.generateCodeChallenge(codeVerifier);
 
@@ -56,26 +57,26 @@ export class KeycloakService {
     window.location.href = authUrl;
   }
 
-  async handleCallback(): Promise<void> {
-
-    const params = new URLSearchParams(
-      window.location.search
-    );
+  async handleCallback(): Promise<void> 
+  {
+    const params = new URLSearchParams(window.location.search);
 
     const code = params.get('code');
 
-    if (!code) {
+    if (!code) 
+    {
       return;
     }
 
     await this.exchangeCodeForToken(code);
   }
 
-  async exchangeCodeForToken(code: string): Promise<void> {
-    const codeVerifier =
-      sessionStorage.getItem('pkce_code_verifier');
+  async exchangeCodeForToken(code: string): Promise<void> 
+  {
+    const codeVerifier = sessionStorage.getItem('pkce_code_verifier');
 
-    if (!codeVerifier) {
+    if (!codeVerifier) 
+    {
       return;
     }
 
@@ -99,40 +100,32 @@ export class KeycloakService {
       )
     );
 
-    localStorage.setItem(
-      'access_token',
-      response.access_token
-    );
+    localStorage.setItem('access_token', response.access_token);
+    localStorage.setItem('refresh_token',response.refresh_token);
+    localStorage.setItem('id_token',response.id_token);
 
-    localStorage.setItem(
-      'refresh_token',
-      response.refresh_token
-    );
-
-    localStorage.setItem(
-      'id_token',
-      response.id_token
-    );
-
+    sessionStorage.removeItem('pkce_code_verifier');
+    
     this.isAuthenticated.set(true);
   }
 
-  getAccessToken(): string | null {
-
+  getAccessToken(): string | null 
+  {
     return localStorage.getItem('access_token');
   }
 
-  getRefreshToken(): string | null {
-
+  getRefreshToken(): string | null 
+  {
     return localStorage.getItem('refresh_token');
   }
 
-  isLoggedIn(): boolean {
-    return !!this.getAccessToken();
+  isLoggedIn(): boolean 
+  {
+    return this.isAccessTokenValid();
   }
 
-  logout(): void {
-
+  logout(): void 
+  {
     const idToken = localStorage.getItem('id_token');
 
     localStorage.removeItem('access_token');
@@ -147,16 +140,17 @@ export class KeycloakService {
        id_token_hint: idToken ?? ''
     });
 
-    const logoutUrl =
-      `http://localhost:8080/realms/Calliope/protocol/openid-connect/logout?${params.toString()}`;
+    const logoutUrl = `http://localhost:8080/realms/Calliope/protocol/openid-connect/logout?${params.toString()}`;
 
     window.location.href = logoutUrl;
   }
 
-  async refreshAccessToken(): Promise<string | null> {
+  async refreshAccessToken(): Promise<string | null> 
+  {
     const refreshToken = this.getRefreshToken();
 
-    if (!refreshToken) {
+    if (!refreshToken) 
+    {
       return null;
     }
 
@@ -166,7 +160,8 @@ export class KeycloakService {
       refresh_token: refreshToken
     });
 
-    try {
+    try 
+    {
       const response = await firstValueFrom(
         this.http.post<TokenResponse>(
           'http://localhost:8080/realms/Calliope/protocol/openid-connect/token',
@@ -179,51 +174,41 @@ export class KeycloakService {
         )
       );
 
-      localStorage.setItem(
-        'access_token',
-        response.access_token
-      );
+      localStorage.setItem('access_token', response.access_token);
 
-      if (response.refresh_token) {
-        localStorage.setItem(
-          'refresh_token',
-          response.refresh_token
-        );
+      if (response.refresh_token) 
+      {
+        localStorage.setItem('refresh_token', response.refresh_token);
       }
 
       return response.access_token;
-    } catch {
+    } 
+    catch 
+    {
       return null;
     }
   }
 
-  isAccessTokenValid(): boolean {
+  isAccessTokenValid(): boolean 
+  {
     const token = this.getAccessToken();
 
-    if (!token) {
+    if (!token) 
+    {
       return false;
     }
 
-    try {
-      const payload = JSON.parse(
-        atob(token.split('.')[1])
-      );
+    try 
+    {
+      const payload = JSON.parse(atob(token.split('.')[1]));
 
       const currentTime = Math.floor(Date.now() / 1000);
 
       return payload.exp > currentTime;
-    } catch {
+    } 
+    catch 
+    {
       return false;
     }
   }
-}
-
-interface TokenResponse {
-  access_token: string;
-  expires_in: number;
-  refresh_expires_in: number;
-  refresh_token: string;
-  token_type: string;
-  id_token: string;
-  scope: string;
 }

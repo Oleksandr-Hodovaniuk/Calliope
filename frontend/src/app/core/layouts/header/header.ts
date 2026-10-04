@@ -14,13 +14,6 @@ export class HeaderComponent {
   private readonly keycloakService = inject(KeycloakService);
   readonly isAuthenticated = this.keycloakService.isAuthenticated;
 
-ngOnInit(): void {
-  console.log(
-    'Token valid:',
-    this.keycloakService.isAccessTokenValid()
-  );
-}
-
   async login(): Promise<void> {
     await this.keycloakService.login();
   }

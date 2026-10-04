@@ -20,6 +20,8 @@ app.UseCors("Angular");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 await app.InitialiseDatabaseAsync();

@@ -10,6 +10,8 @@ public static class ConfigureServices
 
         services.AddCorsPolicies();
 
+        services.AddJwtAuthentication();
+
         return services;
     }
 }
