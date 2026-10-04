@@ -44,4 +44,12 @@ public class TracksController(ISender mediator) : BaseController(mediator)
 
         return NoContent();
     }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> UpdateTrack(Guid id, [FromBody] UpdateTrackDto dto, CancellationToken ct = default)
+    {
+        var result = await Mediator.Send(new UpdateTrackCommand(id, dto), ct);
+
+        return Ok(result);
+    }
 }
