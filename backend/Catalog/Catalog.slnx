@@ -2,4 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/Catalog.Api/Catalog.Api.csproj" />
   </Folder>
+  <Project Path="src/Catalog.Application/Catalog.Application.csproj" Id="6ad20a11-4d0c-4aa1-a7b7-159c947df3cc" />
+  <Project Path="src/Catalog.Domain/Catalog.Domain.csproj" Id="433ba226-cc4d-4753-9997-3d7551239baa" />
+  <Project Path="src/Catalog.Infrastructure/Catalog.Infrastructure.csproj" Id="0dca9e05-5cdb-4f3e-99f0-08be7fb7621a" />
 </Solution>
