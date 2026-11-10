@@ -13,10 +13,24 @@ GET {{Catalog.Api_HostAddress}}/api/tracks?page=2
 
 ###
 
-GET {{Catalog.Api_HostAddress}}/api/Tracks/
+GET {{Catalog.Api_HostAddress}}/api/Tracks/01a1c5a0-fcf2-7135-bc62-2f6bc5fbc0a2
 
 ###
 
 DELETE {{Catalog.Api_HostAddress}}/api/tracks/01a1c574-1623-7e45-b88f-2dc2b7dbcc60
+
+###
+
+POST {{Catalog.Api_HostAddress}}/api/tracks
+Content-Type: application/json
+
+{
+      "id": "01a1c574-1623-7bf6-be51-2b1a0498c295",
+      "name": "Test123",
+      "author": "TEST123123",
+      "album": "qweqweqweqwe",
+      "rating": 2,
+      "hasFile": true
+}
 
 ###

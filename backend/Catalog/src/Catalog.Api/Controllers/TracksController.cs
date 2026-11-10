@@ -1,6 +1,8 @@
 ﻿using Catalog.Application.Tracks.Commands;
+using Catalog.Application.Tracks.Dtoes;
 using Catalog.Application.Tracks.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Api.Controllers;
@@ -36,5 +38,11 @@ public class TracksController(ISender Mediator) : BaseController(Mediator)
         await Mediator.Send(new DeleteTrackCommand(id), ct);
 
         return NoContent();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateTrack([FromBody] CreateTrackDto dto, CancellationToken ct = default)
+    {
+        return Ok(await Mediator.Send(new CreateTrackCommand(dto), ct));
     }
 }

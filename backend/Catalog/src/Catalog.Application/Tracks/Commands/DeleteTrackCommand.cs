@@ -18,6 +18,6 @@ internal class DeleteTrackCommandHandler(IApplicationDbContext _context) : IRequ
         }
 
         _context.Tracks.Remove(track);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(ct);
     }
 }
