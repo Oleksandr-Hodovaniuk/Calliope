@@ -1,4 +1,5 @@
-﻿using Catalog.Application.Interfaces;
+﻿using Catalog.Application.Common.Entities;
+using Catalog.Application.Interfaces;
 using Catalog.Application.Tracks.Dtoes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,7 @@ internal class GetTracksQueryHandler(IApplicationDbContext _context) : IRequestH
 
         var query = _context.Tracks.AsNoTracking();
 
-        var totalCount = await query.CountAsync();
+        var totalCount = await query.CountAsync(ct);
 
         var tracks = await query
             .OrderByDescending(t => t.CreatedAt)

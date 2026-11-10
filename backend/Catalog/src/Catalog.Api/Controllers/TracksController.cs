@@ -15,4 +15,17 @@ public class TracksController(ISender Mediator) : BaseController(Mediator)
 
         return Ok(result);
     }
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetTrackById([FromRoute] Guid id, CancellationToken ct = default)
+    {
+        var result = await Mediator.Send(new GetTrackByIdQuery(id), ct);
+
+        if (result == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(result);
+    }
 }

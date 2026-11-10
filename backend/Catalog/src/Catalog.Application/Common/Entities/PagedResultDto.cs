@@ -1,4 +1,4 @@
-﻿namespace Catalog.Application.Tracks.Dtoes;
+﻿namespace Catalog.Application.Common.Entities;
 
 public record PagedResultDto<T>
 (
