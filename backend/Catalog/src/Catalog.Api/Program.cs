@@ -1,7 +1,8 @@
 using Catalog.Api;
 using Catalog.Api.Extensions;
-using Catalog.Infrastructure;
+using Catalog.Api.Middlewares;
 using Catalog.Application;
+using Catalog.Infrastructure;
 using DotNetEnv;
 
 Env.Load("../../.env");
@@ -20,6 +21,8 @@ var app = builder.Build();
 await app.InitialiseDatabaseAsync();
 
 // Configure the HTTP request pipeline.
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
