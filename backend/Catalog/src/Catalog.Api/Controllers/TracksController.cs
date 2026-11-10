@@ -45,4 +45,10 @@ public class TracksController(ISender Mediator) : BaseController(Mediator)
     {
         return Ok(await Mediator.Send(new CreateTrackCommand(dto), ct));
     }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> UpdateTrack([FromRoute] Guid id, [FromBody] UpdateTrackDto dto, CancellationToken ct = default)
+    {
+        return Ok(await Mediator.Send(new UpdateTrackCommand(id, dto), ct));
+    }
 }

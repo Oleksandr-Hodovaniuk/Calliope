@@ -10,12 +10,8 @@ internal class DeleteTrackCommandHandler(IApplicationDbContext _context) : IRequ
     public async Task Handle(DeleteTrackCommand request, CancellationToken ct)
     {
         var track = await _context.Tracks
-            .FirstOrDefaultAsync(t => t.Id == request.Id, ct);
-
-        if (track == null)
-        {
-            throw new KeyNotFoundException($"Track with id {request.Id} was not found.");
-        }
+            .FirstOrDefaultAsync(t => t.Id == request.Id, ct)
+            ?? throw new KeyNotFoundException($"Track with id {request.Id} was not found.");
 
         _context.Tracks.Remove(track);
         await _context.SaveChangesAsync(ct);

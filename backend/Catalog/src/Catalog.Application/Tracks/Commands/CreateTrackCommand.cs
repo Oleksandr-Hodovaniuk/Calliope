@@ -19,8 +19,8 @@ internal class CreateTrackCommandHandler(IApplicationDbContext _context) : IRequ
             HasFile = request.Dto.HasFile
         };
 
-        await _context.Tracks.AddAsync(track);
-        await _context.SaveChangesAsync();
+        await _context.Tracks.AddAsync(track, ct);
+        await _context.SaveChangesAsync(ct);
 
         return new TrackDto
             (
