@@ -5,14 +5,18 @@ Accept: application/json
 
 ###
 
-GET {{Catalog.Api_HostAddress}}/api/tracks
+GET {{Catalog.Api_HostAddress}}/api/tracks?page=2
 
 ###
 
-GET {{Catalog.Api_HostAddress}}/api/tracks
+GET {{Catalog.Api_HostAddress}}/api/tracks?page=2
 
 ###
 
-GET {{Catalog.Api_HostAddress}}/api/Tracks/01a1c574-1623-7bf6-be51-2b1a0498c295
+GET {{Catalog.Api_HostAddress}}/api/Tracks/
+
+###
+
+DELETE {{Catalog.Api_HostAddress}}/api/tracks/01a1c574-1623-7e45-b88f-2dc2b7dbcc60
 
 ###

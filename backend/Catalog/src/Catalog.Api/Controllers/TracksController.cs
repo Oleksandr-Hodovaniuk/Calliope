@@ -1,4 +1,5 @@
-﻿using Catalog.Application.Tracks.Queries;
+﻿using Catalog.Application.Tracks.Commands;
+using Catalog.Application.Tracks.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,5 +28,13 @@ public class TracksController(ISender Mediator) : BaseController(Mediator)
         }
 
         return Ok(result);
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteTrack([FromRoute] Guid id, CancellationToken ct = default)
+    {
+        await Mediator.Send(new DeleteTrackCommand(id), ct);
+
+        return NoContent();
     }
 }
