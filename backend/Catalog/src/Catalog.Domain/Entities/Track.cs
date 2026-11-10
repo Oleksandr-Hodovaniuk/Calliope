@@ -7,6 +7,6 @@ public class Track : BaseEntity
     public string? Album { get; set; }
     public byte? Rating { get; set; }
     public bool HasFile { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     public ICollection<PlaylistTrack> PlaylistTracks { get; set; } = [];
 }
