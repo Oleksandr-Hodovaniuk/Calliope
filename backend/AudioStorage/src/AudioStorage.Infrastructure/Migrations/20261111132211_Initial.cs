@@ -18,7 +18,6 @@ namespace AudioStorage.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Size = table.Column<long>(type: "bigint", nullable: false),
                     Duration = table.Column<TimeSpan>(type: "interval", nullable: false),
-                    StoragePath = table.Column<string>(type: "text", nullable: false),
                     UploadedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
