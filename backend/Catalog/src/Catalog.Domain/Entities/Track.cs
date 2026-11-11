@@ -6,7 +6,7 @@ public class Track : BaseEntity
     public string? Author { get; set; }
     public string? Album { get; set; }
     public byte? Rating { get; set; }
-    public bool HasFile { get; set; }
+    public Guid? FileId { get; set; }
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     public ICollection<PlaylistTrack> PlaylistTracks { get; set; } = [];
 }

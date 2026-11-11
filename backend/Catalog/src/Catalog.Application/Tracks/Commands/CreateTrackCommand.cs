@@ -15,8 +15,7 @@ internal class CreateTrackCommandHandler(IApplicationDbContext _context) : IRequ
             Name = request.Dto.Name,
             Author = request.Dto.Author,
             Album = request.Dto.Album,
-            Rating = request.Dto.Rating,
-            HasFile = request.Dto.HasFile
+            Rating = request.Dto.Rating
         };
 
         await _context.Tracks.AddAsync(track, ct);
@@ -29,7 +28,7 @@ internal class CreateTrackCommandHandler(IApplicationDbContext _context) : IRequ
                 track.Author,
                 track.Album,
                 track.Rating,
-                track.HasFile,
+                null,
                 track.CreatedAt
             );
     }

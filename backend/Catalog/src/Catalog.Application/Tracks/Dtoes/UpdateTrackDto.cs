@@ -6,5 +6,5 @@ public record UpdateTrackDto
     string? Author,
     string? Album,
     byte? Rating,
-    bool HasFile
+    Guid? FileId
 );

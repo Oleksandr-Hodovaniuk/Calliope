@@ -6,5 +6,5 @@ public record CreateTrackDto
     string? Author,
     string? Album,
     byte? Rating,
-    bool HasFile
+    Guid? FileId
 );

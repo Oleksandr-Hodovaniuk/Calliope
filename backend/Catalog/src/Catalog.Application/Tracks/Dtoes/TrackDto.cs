@@ -7,6 +7,6 @@ public record TrackDto
     string? Author,
     string? Album,
     byte? Rating,
-    bool HasFile,
+    Guid? FileId,
     DateTimeOffset CreatedAt
 );

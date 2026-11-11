@@ -27,8 +27,7 @@ internal class ApplicationDbContextInitialiser(ApplicationDbContext _context)
             Name = "Bohemian Rhapsody",
             Author = "Queen",
             Album = "A Night at the Opera",
-            Rating = 5,
-            HasFile = false
+            Rating = 5
         };
 
         var track2 = new Track
@@ -36,8 +35,7 @@ internal class ApplicationDbContextInitialiser(ApplicationDbContext _context)
             Name = "Billie Jean",
             Author = "Michael Jackson",
             Album = "Thriller",
-            Rating = 5,
-            HasFile = false
+            Rating = 5
         };
 
         var track3 = new Track
@@ -45,8 +43,7 @@ internal class ApplicationDbContextInitialiser(ApplicationDbContext _context)
             Name = "Stairway to Heaven",
             Author = "Led Zeppelin",
             Album = "Led Zeppelin IV",
-            Rating = 5,
-            HasFile = false
+            Rating = 5
         };
 
         var playlist = new Playlist

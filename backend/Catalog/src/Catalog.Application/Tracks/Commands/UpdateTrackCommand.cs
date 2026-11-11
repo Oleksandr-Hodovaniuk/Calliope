@@ -18,7 +18,7 @@ internal class UpdateTrackCommandHandler(IApplicationDbContext _context) : IRequ
         track.Author = request.Dto.Author;
         track.Album = request.Dto.Album;
         track.Rating = request.Dto.Rating;
-        track.HasFile = request.Dto.HasFile;
+        track.FileId = request.Dto.FileId;
 
         await _context.SaveChangesAsync(ct);
 
@@ -29,7 +29,7 @@ internal class UpdateTrackCommandHandler(IApplicationDbContext _context) : IRequ
             track.Author,
             track.Album,
             track.Rating,
-            track.HasFile,
+            null,
             track.CreatedAt
         );
     }
