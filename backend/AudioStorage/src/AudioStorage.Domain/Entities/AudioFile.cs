@@ -2,8 +2,7 @@
 
 public class AudioFile : BaseEntity
 {
-    public string FileName { get; set; } = default!;
-    public string Contenttype { get; set; } = default!;
+    public string FileName => $"{Id}.mp3";
     public long Size { get; set; }
     public TimeSpan Duration { get; set; }
     public string StoragePath { get; set; } = default!;

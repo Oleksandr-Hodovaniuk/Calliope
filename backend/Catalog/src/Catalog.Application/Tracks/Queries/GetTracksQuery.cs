@@ -28,7 +28,7 @@ internal class GetTracksQueryHandler(IApplicationDbContext _context) : IRequestH
                 t.Author,
                 t.Album,
                 t.Rating,
-                t.HasFile,
+                t.FileId,
                 t.CreatedAt
             ))
             .ToListAsync(ct);

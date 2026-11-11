@@ -2,4 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/AudioStorage.Api/AudioStorage.Api.csproj" />
   </Folder>
+  <Project Path="src/AudioStorage.Application/AudioStorage.Application.csproj" Id="79670356-c0cc-42cf-b926-e5791ec38bd2" />
+  <Project Path="src/AudioStorage.Domain/AudioStorage.Domain.csproj" Id="b35b8b36-1744-4ebe-95bc-b1e49511e590" />
+  <Project Path="src/AudioStorage.Infrastructure/AudioStorage.Infrastructure.csproj" Id="51b8fbe4-49c9-4bdc-a02a-507eea119f21" />
 </Solution>

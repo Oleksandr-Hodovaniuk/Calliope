@@ -20,7 +20,7 @@ internal class GetTrackByIdQueryHandler(IApplicationDbContext _context) : IReque
                 t.Author,
                 t.Album,
                 t.Rating,
-                t.HasFile,
+                t.FileId,
                 t.CreatedAt
             ))
             .FirstOrDefaultAsync(ct);

@@ -17,17 +17,13 @@ internal class ApplicationDbContextInitialiser(ApplicationDbContext _context)
 
     public async Task SeedAsync(CancellationToken ct = default)
     {
-        if (await _context.Tracks.AnyAsync(ct))
-        {
-            return;
-        }
-
         var track1 = new Track
         {
             Name = "Bohemian Rhapsody",
             Author = "Queen",
             Album = "A Night at the Opera",
-            Rating = 5
+            Rating = 5,
+            FileId = Guid.Parse("01a1ca88-bd64-7b39-af99-1e2d86c7dc9b")
         };
 
         var track2 = new Track
@@ -35,7 +31,8 @@ internal class ApplicationDbContextInitialiser(ApplicationDbContext _context)
             Name = "Billie Jean",
             Author = "Michael Jackson",
             Album = "Thriller",
-            Rating = 5
+            Rating = 5,
+            FileId = Guid.Parse("01a1ca8e-cba4-7935-99b0-f57934807b34")
         };
 
         var track3 = new Track
@@ -43,7 +40,8 @@ internal class ApplicationDbContextInitialiser(ApplicationDbContext _context)
             Name = "Stairway to Heaven",
             Author = "Led Zeppelin",
             Album = "Led Zeppelin IV",
-            Rating = 5
+            Rating = 5,
+            FileId = Guid.Parse("01a1ca8e-f0bf-7da4-81ab-e3c5b3498158")
         };
 
         var playlist = new Playlist

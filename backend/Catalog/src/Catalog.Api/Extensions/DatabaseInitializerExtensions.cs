@@ -6,19 +6,23 @@ internal static class DatabaseExtensions
 {
     internal static async Task InitialiseDatabaseAsync(this WebApplication app, CancellationToken ct = default)
     {
-        try
+        if (app.Environment.IsDevelopment() && app.Configuration.GetValue<bool>("SEED_ENABLED"))
         {
-            using var scope = app.Services.CreateScope();
+            try
+            {
+                using var scope = app.Services.CreateScope();
 
-            var dbInitialiser = scope.ServiceProvider
-                .GetRequiredService<IApplicationDbContextInitialiser>();
+                var dbInitialiser = scope.ServiceProvider
+                    .GetRequiredService<IApplicationDbContextInitialiser>();
 
-            await dbInitialiser.InitialiseAsync(ct);
-            await dbInitialiser.SeedAsync(ct);
-        }
-        catch (Exception ex)
-        {
-            app.Logger.LogCritical(ex, "Database initialization failed.");
+                await dbInitialiser.InitialiseAsync(ct);
+                await dbInitialiser.SeedAsync(ct);
+            }
+            catch (Exception ex)
+            {
+                app.Logger.LogCritical(ex, "Database initialization failed.");
+                throw;
+            }
         }
     }
 }
