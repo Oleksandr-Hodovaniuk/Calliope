@@ -19,6 +19,7 @@ internal class ApplicationDbContext(DbContextOptions<ApplicationDbContext> optio
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
         base.OnModelCreating(builder);
     }
 }

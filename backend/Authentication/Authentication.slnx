@@ -2,4 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/Authentication.Api/Authentication.Api.csproj" />
   </Folder>
+  <Project Path="src/Authentication.Application/Authentication.Application.csproj" Id="15d5c898-8ae4-4d81-a275-bc7d4dc3cf35" />
+  <Project Path="src/Authentication.Domain/Authentication.Domain.csproj" Id="f7ea58a6-4994-492b-bb5d-56ee7aa65400" />
+  <Project Path="src/Authentication.Infrastructure/Authentication.Infrastructure.csproj" Id="e874e53b-5730-4bcd-8716-48329d785f36" />
 </Solution>
