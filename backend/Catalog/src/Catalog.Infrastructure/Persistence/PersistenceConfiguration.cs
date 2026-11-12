@@ -10,11 +10,11 @@ internal static class PersistenceConfiguration
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        var host = configuration["DB_HOST"];
-        var portValue = configuration["DB_PORT"];
-        var database = configuration["DB_NAME"];
-        var username = configuration["DB_USER"];
-        var password = configuration["DB_PASSWORD"];
+        var host = configuration["CATALOG_DB_HOST"];
+        var portValue = configuration["CATALOG_DB_PORT"];
+        var database = configuration["CATALOG_DB_NAME"];
+        var username = configuration["CATALOG_DB_USER"];
+        var password = configuration["CATALOG_DB_PASSWORD"];
 
         if (string.IsNullOrWhiteSpace(host) ||
             string.IsNullOrWhiteSpace(database) ||

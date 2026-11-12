@@ -5,7 +5,7 @@ Accept: application/json
 
 ###
 
-GET {{Catalog.Api_HostAddress}}/api/tracks?page=2
+GET {{Catalog.Api_HostAddress}}/api/tracks
 
 ###
 

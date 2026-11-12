@@ -3,7 +3,7 @@ using AudioStorage.Api.Extensions;
 using AudioStorage.Infrastructure;
 using DotNetEnv;
 
-Env.Load("../../.env");
+Env.TraversePath().Load();
 
 var builder = WebApplication.CreateBuilder(args);
 

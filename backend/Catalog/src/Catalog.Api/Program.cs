@@ -5,7 +5,7 @@ using Catalog.Application;
 using Catalog.Infrastructure;
 using DotNetEnv;
 
-Env.Load("../../.env");
+Env.TraversePath().Load();
 
 var builder = WebApplication.CreateBuilder(args);
 

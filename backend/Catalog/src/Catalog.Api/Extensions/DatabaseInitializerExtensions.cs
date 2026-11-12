@@ -6,7 +6,7 @@ internal static class DatabaseExtensions
 {
     internal static async Task InitialiseDatabaseAsync(this WebApplication app, CancellationToken ct = default)
     {
-        if (app.Environment.IsDevelopment() && app.Configuration.GetValue<bool>("SEED_ENABLED"))
+        if (app.Environment.IsDevelopment() && app.Configuration.GetValue<bool>("CATALOG_DB_SEED_ENABLED"))
         {
             try
             {
