@@ -50,6 +50,28 @@ namespace Authentication.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EmailConfirmationToken",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    TokenHash = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    ExpiresAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    UsedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmailConfirmationToken", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmailConfirmationToken_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserSessions",
                 columns: table => new
                 {
@@ -97,6 +119,17 @@ namespace Authentication.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmailConfirmationToken_TokenHash",
+                table: "EmailConfirmationToken",
+                column: "TokenHash",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmailConfirmationToken_UserId",
+                table: "EmailConfirmationToken",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RefreshTokens_SessionId",
                 table: "RefreshTokens",
                 column: "SessionId");
@@ -133,6 +166,9 @@ namespace Authentication.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "EmailConfirmationToken");
+
             migrationBuilder.DropTable(
                 name: "RefreshTokens");
 

@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Authentication.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261112135703_Initial")]
+    [Migration("20261113073305_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,6 +25,38 @@ namespace Authentication.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Authentication.Domain.Entities.EmailConfirmationToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("TokenHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset?>("UsedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TokenHash")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("EmailConfirmationToken");
+                });
 
             modelBuilder.Entity("Authentication.Domain.Entities.RefreshToken", b =>
                 {
@@ -156,6 +188,17 @@ namespace Authentication.Infrastructure.Migrations
                     b.ToTable("UserSessions");
                 });
 
+            modelBuilder.Entity("Authentication.Domain.Entities.EmailConfirmationToken", b =>
+                {
+                    b.HasOne("Authentication.Domain.Entities.User", "User")
+                        .WithMany("EmailConfirmationTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Authentication.Domain.Entities.RefreshToken", b =>
                 {
                     b.HasOne("Authentication.Domain.Entities.UserSession", "Session")
@@ -196,6 +239,8 @@ namespace Authentication.Infrastructure.Migrations
 
             modelBuilder.Entity("Authentication.Domain.Entities.User", b =>
                 {
+                    b.Navigation("EmailConfirmationTokens");
+
                     b.Navigation("Sessions");
                 });
 

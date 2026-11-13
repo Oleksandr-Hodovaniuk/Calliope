@@ -12,4 +12,5 @@ public class User : BaseEntity
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     public DateTimeOffset? UpdatedAt { get; set; }
     public ICollection<UserSession> Sessions { get; set; } = [];
+    public ICollection<EmailConfirmationToken> EmailConfirmationTokens { get; set; } = [];
 }
